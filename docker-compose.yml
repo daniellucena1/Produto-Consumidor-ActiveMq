@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  activemq:
+    image: rmohr/activemq:latest
+    container_name: activemq
+    restart: unless-stopped
+    ports:
+      - "61616:61616" # Porta padrão para conexões JMS (TCP)
+      - "8161:8161" # Porta do console web (http://localhost:8161)
+    environment:
+      - ACTIVEMQ_ADMIN_LOGIN=admin
+      - ACTIVEMQ_ADMIN_PASSWORD=admin
+      - ACTIVEMQ_USER_LOGIN=admin
+      - ACTIVEMQ_USER_PASSWORD=admin
+    volumes:
+      - activemq_data:/var/activemq/data
+      - activemq_conf:/var/activemq/conf
+
+volumes:
+  activemq_data:
+  activemq_conf:

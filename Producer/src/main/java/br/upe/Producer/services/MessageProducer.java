@@ -13,7 +13,7 @@ public class MessageProducer {
     }
 
     public void sendMessage(String message) {
-        jmsTemplate.convertAndSend(message);
+        jmsTemplate.convertAndSend("test", message);
         System.out.println("Mensagem enviada: " + message);
     }
 }

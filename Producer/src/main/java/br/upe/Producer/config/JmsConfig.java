@@ -1,7 +1,7 @@
 package br.upe.Producer.config;
 
 import jakarta.jms.JMSException;
-import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
+import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +25,7 @@ public class JmsConfig {
     public ActiveMQConnectionFactory connectionFactory() throws JMSException {
         ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
         factory.setBrokerURL(brokerUrl);
-        factory.setUser(user);
+        factory.setUserName(user);
         factory.setPassword(password);
         return factory;
     }
@@ -34,7 +34,7 @@ public class JmsConfig {
     public JmsTemplate jmsTemplate() throws JMSException {
         JmsTemplate template = new JmsTemplate();
         template.setConnectionFactory(connectionFactory());
-        template.setPubSubDomain(true);
+        template.setPubSubDomain(false);
         return template;
     }
 }
